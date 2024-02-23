@@ -29,7 +29,6 @@
         }
         .wrapper-loading {
             width: 100%;
-            color: white;
             text-align: center;
         }
     </style>
@@ -37,31 +36,74 @@
 <body>
         <div class="wrapper">
             <div class="wrapper-loading">
-                <div style="background-color: rgb(109, 109, 114); width: 1px;height: 20px;" id="loading-bar"></div>
-                <div class="card mt-3" style="width: 100%;">
+                <div class="card mt-3" style="width: 100%;" id="step1">
+                    <div class="card-body">
+                        <div class="spinner-border spinner-border-sm"></div>
+                        <div class="spinner-grow spinner-grow-sm"></div>
+                    </div>
                     <div class="card-body">กำลังสร้างโฟลเดอร์</div>
+                </div>
+
+                <div class="card mt-3" style="width: 100%;" id="step2">
+                    <div class="card-body">
+                        <div class="spinner-border spinner-border-sm"></div>
+                        <div class="spinner-grow spinner-grow-sm"></div>
+                    </div>
+                    <div class="card-body">กำลังคัดลอกไฟล์</div>
+                </div>
+
+                <div class="card mt-3" style="width: 100%;" id="step3">
+                    <div class="card-body">
+                        <div class="spinner-border spinner-border-sm"></div>
+                        <div class="spinner-grow spinner-grow-sm"></div>
+                    </div>
+                    <div class="card-body">กำลังเตรียมข้อมูล</div>
                 </div>
             </div>
         </div>
         
         <script>
+           const fetch1 = async ()=>{
+            await fetch('./load.php')
+            .then(response => response.json())
+            .then(data => console.log(data['status']))
+            .catch(error => console.log(error));
+           }
            
-            setTimeout(() => {
-                const progressBar = document.getElementById('loading-bar');
-                let progress = 0;
-                const interval = setInterval(() => {
-                progress += 1;
-                console.log(progress);
-                progressBar.innerHTML = `${progress}%`;
-                progressBar.style.width = `${progress}%`;
-                if (progress === 100) {
-                    clearInterval(interval);
-                    document.querySelector('.progress').style.display = 'none'
-                }
+           const fetch2 = async ()=>{
+            await fetch('./load.php')
+            .then(response => response.json())
+            .then(data => console.log(data['status']))
+            .catch(error => console.log(error));
+           }
+           
+           const fetch3 = async ()=>{
+            await fetch('./load.php')
+            .then(response => response.json())
+            .then(data => console.log(data['status']))
+            .catch(error => console.log(error));
+           }
+           
+           
+           fetch1();
+           fetch2();
+           fetch3();
+            // setTimeout(() => {
+            //     const progressBar = document.getElementById('loading-bar');
+            //     let progress = 0;
+            //     const interval = setInterval(() => {
+            //     progress += 1;
+            //     console.log(progress);
+            //     progressBar.innerHTML = `${progress}%`;
+            //     progressBar.style.width = `${progress}%`;
+            //     if (progress === 100) {
+            //         clearInterval(interval);
+            //         document.querySelector('.progress').style.display = 'none'
+            //     }
                 
-                }, 20);
+            //     }, 20);
             
-            }, 1000);    
+            // }, 1000);    
         </script>
 </body>
 </html>
