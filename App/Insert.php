@@ -68,6 +68,5 @@ class Insert{
     
 }
 
-$insert = new Insert('tb_content');
-$insert->insert();
+
 ?>
