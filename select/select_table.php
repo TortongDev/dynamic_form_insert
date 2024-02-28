@@ -2,12 +2,14 @@
     include(dirname(__DIR__).'/App/Select.php');
     $show = new Select();
     
-    $show->setOption('*'); 
-    //$show->setOption("field_name1, field_name2");
+    // Config  อ้างอิงจากในฐานข้อมูล
+    $tableName = 'tb_content';
+    $option = ' * '; // * คือดึงมาทุกคอลัมน์ในตารางฐานข้อมูล
+    // $option = ' field1, field2 ';  คือดึงมาเฉพาะคอลัมน์ที่ต้องการในตารางฐานข้อมูล
 
-    $show->setTable('tb_content');
-    
-    // $test->where('id ='.$_GET['id']);
+
+    $show->setOption($option); 
+    $show->setTable($tableName);
     $stmt = $show->query();
 ?>
 
@@ -15,16 +17,28 @@
     <tr>
         <th>column 1</th>
         <th>column 2</th>
+        <th>column 3</th>
+        <th>column 4</th>
     </tr>
-    <?php while($r = $stmt->fetch(PDO::FETCH_ASSOC)): ?>
+    <?php
+        $NUMBER = 0;
+        while($r = $stmt->fetch(PDO::FETCH_ASSOC)): 
+        $NUMBER++;
+    ?>
         <tr>
-
             <td>
-                <?php echo $r['field_name1'] ?>
+                <?php echo $NUMBER; ?>
+            </td>
+            <td>
+                <?php echo $r['topic'] ?> 
+            </td>
+            <td>
+                <?php echo $r['topic'] ?>
             </td>
 
             <td>
-                <?php echo $r['field_name2'] ?>
+                <a href="../edit/edit_data.php?id=<?php echo $r['id'] ?>" class="btn btn-warning">แก้ไขข้อมูล</a>
+                <a href="../delete/delete_data.php?id=<?php echo $r['id'] ?>" class="btn btn-primary">ลบข้อมูล</a>
             </td>
 
         </tr>

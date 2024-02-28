@@ -21,6 +21,16 @@
             }).then((data)=>{
                 console.log(data);
                 if(data.isConfirmed == true){
+                    Swal.fire({
+                    position: "top-end",
+                    icon: "success",
+                    title: "ติดตั้งสำเร็จ",
+                    showConfirmButton: false,
+                    timer: 51500
+                    }).then(res=>{
+                        location.href = 'success.html'
+                        
+                    });
                     fetch('./load.php?pathweb='+data.value)
                     .then(response => response.json())
                     .then(data => console.log(data))
