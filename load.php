@@ -4,7 +4,7 @@ $pathAppInsert = __DIR__.'\App\Insert.php';
 $pathAppEdit = __DIR__.'\App\Edit.php';
 $pathAppSelect = __DIR__.'\App\Select.php';
 $pathAppDelete = __DIR__.'\App\Delete.php';
-$pathInsert = __DIR__.'\send_insert_to_database\insert_table.php';
+$pathInsert = __DIR__.'\insert\insert_table.php';
 $pathSelect = __DIR__.'\select\select_table.php';
 $pathDelete = __DIR__.'\delete\delete_data.php';
 $pathEdit = __DIR__.'\edit\edit_data.php';
@@ -12,7 +12,7 @@ $pathConfig = __DIR__.'\App\config.php';
 
 $myPathPate = isset($_GET['pathweb']) ? htmlspecialchars(trim($_GET['pathweb'])) :'';
 $myfolder = "../$myPathPate/App";
-$myfolder1 = "../$myPathPate/send_insert_to_database";
+$myfolder1 = "../$myPathPate/insert";
 $myfolder2 = "../$myPathPate/select";
 $myfolder3 = "../$myPathPate/delete";
 $myfolder4 = "../$myPathPate/edit";
@@ -23,7 +23,7 @@ $myfolder4 = "../$myPathPate/edit";
 @mkdir("$myfolder4",7777);
 
 $myfolder = dirname(__DIR__).'\\'.$myPathPate.'\App';
-$myfolder1 = dirname(__DIR__).'\\'.$myPathPate.'\send_insert_to_database';
+$myfolder1 = dirname(__DIR__).'\\'.$myPathPate.'\insert';
 $myfolder2 = dirname(__DIR__).'\\'.$myPathPate.'\select';
 $myfolder3 = dirname(__DIR__).'\\'.$myPathPate.'\delete';
 $myfolder4 = dirname(__DIR__).'\\'.$myPathPate.'\edit';

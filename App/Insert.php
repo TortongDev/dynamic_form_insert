@@ -11,8 +11,6 @@ class Insert{
     public $val;
     public function __construct($tablename = ""){
         $this->tablename = $tablename;
-        
-    
     }
     public function genared_stmt(){
         $input = file_get_contents("php://input");
