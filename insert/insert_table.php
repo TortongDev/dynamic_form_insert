@@ -10,6 +10,6 @@
     $insert = new Insert($tableName);
     $insert->insert();
     header("Location: $redirect");
-
+    exit;
 
 ?>

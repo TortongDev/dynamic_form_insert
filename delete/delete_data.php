@@ -7,12 +7,14 @@
 $primaryKeyName = 'id';
 // config 2
 $tableName      = 'tb_content';
-
+// config 3
+$redirect = "../form.html";
 
 
 
 $delete->setTable($tableName);
 $delete->setID($primaryKeyName , @$_GET['id']);
 $delete->start_delete();
- 
+header('Location: '.$redirect);
+exit;
 ?>
