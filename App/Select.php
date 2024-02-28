@@ -1,32 +1,27 @@
 <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+
 <?php
+include(__DIR__ ."/config.php");
 class Select{
-    private $host   = "localhost";
-    private $user   = "root";
-    private $pass   = "";
-    private $dbname = "db_khanalukling";
+    private $host   = HOST;
+    private $user   = USER;
+    private $pass   = PASS;
+    private $dbname = DBNAME;
     public $pdo;
-    public $setTable;
+    public $tablename;
     public $setOption;
-    public $setWhere;
-    public function __construct($setOption, $setTable){
-        $this->setTable = $setTable;
-        $this->setOption = $setOption;
-        $this->connect();
-        if(empty($this->setWhere)){
-            $optionStart = "1=1";
-        } else {
-            $optionStart = "1=1 AND ";
-        }
-        echo "select {$this->setOption} from {$this->setTable} where {$optionStart} {$this->setWhere}";
-        // $stmt = $this->pdo->query("select {$this->setOption} from {$this->setTable} where {$optionStart} {$this->setWhere}");
-        // $stmt = $stmt->fetch(PDO::FETCH_ASSOC);
-        // $this->disconnect();
-        // return $stmt;
+    public $where;
+    public function setOption($option){
+        $this->setOption = $option;
     }
-    public function setwhere($where){
-        $this->setWhere = $where;
+    public function setTable($tablename){
+        $this->tablename = $tablename;
+        
+    }
+    public function where($where){
+        $this->where = $where;
+        
     }
     public function __destruct(){
         $this->pdo = NULL;
@@ -44,5 +39,19 @@ class Select{
     public function disconnect(){
         $this->pdo = NULL;
     }
+    public function query(){
+        $this->connect();
+        if(empty($this->where)){
+            $optionStart = "1=1";
+        } else {
+            $optionStart = "1=1 AND ";
+        }
+        $stmt = "select {$this->setOption} from {$this->tablename} where {$optionStart} {$this->where}";
+        $stmt = $this->pdo->query($stmt);
+        $this->disconnect();
+        return $stmt;
+    }
 }
+
+
 ?>

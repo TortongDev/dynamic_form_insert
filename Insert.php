@@ -1,12 +1,10 @@
 <?php
-include(__DIR__ ."/config.php");
 class Insert{
-    private $host   = HOST;
-    private $user   = USER;
-    private $pass   = PASS;
-    private $dbname = DBNAME;
     public $tablename;
-
+    private $host   = "localhost";
+    private $user   = "root";
+    private $pass   = "";
+    private $dbname = "db_khanalukling";
     public $pdo;
     public $val;
     public function __construct($tablename = ""){
@@ -70,5 +68,5 @@ class Insert{
     
 }
 
-new Insert;
+
 ?>
