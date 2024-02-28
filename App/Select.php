@@ -2,51 +2,31 @@
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
 <?php
 class Select{
-    public $tablename;
     private $host   = "localhost";
     private $user   = "root";
     private $pass   = "";
     private $dbname = "db_khanalukling";
     public $pdo;
-    public $classname;
-    public function __construct($tablename,$classname){
-        $this->tablename = $tablename; 
-        $this->classname = $classname;
-    }
-    public function select($field){
-        $field_db = "";
-        $field_name = "<th>#</th>";
-        foreach ($field as $key => $value) {
-            $field_db .= $key.',';
-            $field_name .= '<th>'.$value.'</th>';
-        }
-        $field_db = substr($field_db , 0 , -1);
-        $field_name .= "<th></th>";
-        $sql = "SELECT {$field_db} FROM $this->tablename";
+    public $setTable;
+    public $setOption;
+    public $setWhere;
+    public function __construct($setOption, $setTable){
+        $this->setTable = $setTable;
+        $this->setOption = $setOption;
         $this->connect();
-        $select = $this->pdo->query($sql);
-        echo <<<TABLE
-        <table class="table $this->classname">
-            <tr>$field_name</tr>
-        TABLE;
-        $number = 0;
-        while ($r = $select->fetch(PDO::FETCH_ASSOC)) {
-            $number++;
-            echo <<<TABLE1
-                <tr>
-                    <td>{$number}</td>
-            TABLE1;
-                foreach ($r as $key => $value) {
-                    @$$key .= $r[$key];
-                    echo <<<TABLE11
-                        <td>{$$key}</td>
-                    TABLE11;
-                }
-                echo "<td><a href='' class='btn btn-warning'>แก้ไข</a></td></tr>";
+        if(empty($this->setWhere)){
+            $optionStart = "1=1";
+        } else {
+            $optionStart = "1=1 AND ";
         }
-        echo <<<TABLE2
-        </table>
-        TABLE2;
+        echo "select {$this->setOption} from {$this->setTable} where {$optionStart} {$this->setWhere}";
+        // $stmt = $this->pdo->query("select {$this->setOption} from {$this->setTable} where {$optionStart} {$this->setWhere}");
+        // $stmt = $stmt->fetch(PDO::FETCH_ASSOC);
+        // $this->disconnect();
+        // return $stmt;
+    }
+    public function setwhere($where){
+        $this->setWhere = $where;
     }
     public function __destruct(){
         $this->pdo = NULL;
