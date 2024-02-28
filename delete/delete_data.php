@@ -3,7 +3,9 @@
  $delete = new Delete;
 
 // config อ้างอิจาก ฐานข้อมูล
+// config 1
 $primaryKeyName = 'id';
+// config 2
 $tableName      = 'tb_content';
 
 
