@@ -30,10 +30,10 @@
                 <?php echo $NUMBER; ?>
             </td>
             <td>
-                <?php echo $r['topic'] ?> 
+                <?php echo $r['เปลี่ยนชื่อ column ที่ต้องการแสดงจากฐานข้อมูล 1'] ?> 
             </td>
             <td>
-                <?php echo $r['topic'] ?>
+                <?php echo $r['เปลี่ยนชื่อ column ที่ต้องการแสดงจากฐานข้อมูล 2'] ?>
             </td>
 
             <td>
